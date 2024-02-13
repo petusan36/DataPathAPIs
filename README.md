@@ -86,7 +86,7 @@ build.sh
 > 
 > docker build -f uvicorn/Dockerfile -t uvicorn:`<tag>` .
 
-Donde `<tag>` por defecto viene con `pedro` pero puede ser cambiada a gusto de la persona por otro valor
+Donde `<tag>` por defecto viene con `pedro` pero puede ser cambiada a gusto de la persona por otro valor, si esta se cambia, también se debe ajsutar en el archivo `docker-compose.yml` y cambiar por el tag asignado en cada uno de los servicios en la propiedad `image
 
 ```commandline
 . build.sh
