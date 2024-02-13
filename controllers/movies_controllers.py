@@ -10,7 +10,6 @@ router = APIRouter()
 @router.get(
     "/",
     tags=["/"],
-    response_model=CounterModel,
 )
 async def read_root():
     """
