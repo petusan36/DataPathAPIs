@@ -22,15 +22,15 @@ Se selecciona como base de datos `Mongo DB` y como framework para el api `FastAP
 ---
 #### Estructura del proyecto:
 ```nginx
-|-controllers
-	| -movies_controllers.py
+|- controllers
+	| - movies_controllers.py
 | - models
 	| - modelsMovies.py
 | - mongoDB
-	| -mongo-init
+	| - mongo-init
 		| - mongo-init.js	
-	| -Dockerfile
-	| -mongo_connect.py
+	| - Dockerfile
+	| - mongo_connect.py
 | - routers
 	| - routerMovies.py
 | - uvicorn
