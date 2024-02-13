@@ -1,9 +1,9 @@
 from fastapi import FastAPI
-from routes import router
+from routers.routerMovies import routerMovie
 
 
-app = FastAPI(
-    title="Cartelera de peliculas",
-    summary="API para CRUD de Cartelera de cine"
+appCollections = FastAPI(
+    title="Colecciones de peliculas",
+    summary="API para CRUD de colecciones de peliculas"
 )
-app.include_router(router)
+appCollections.include_router(routerMovie)

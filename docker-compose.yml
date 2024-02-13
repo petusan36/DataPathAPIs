@@ -5,7 +5,7 @@ services:
 
   mongo:
     image: mongo:pedro
-    container_name: mongo_api
+    container_name: mongo_db
     env_file:
       - .env
     restart: always
@@ -16,7 +16,7 @@ services:
     ports:
       - '27017:27017'
     volumes:
-      - ./mongo-init/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./mongoDB/mongo-init/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
       - data_mongo:/data/db
     networks:
       - api-network
@@ -38,6 +38,17 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://${MONGODB_ADMIN_USERNAME}:${MONGODB_ADMIN_PASSWORD}@mongo:27017/
       ME_CONFIG_BASICAUTH_USERNAME: ${BASICAUTH_USERNAME}
       ME_CONFIG_BASICAUTH_PASSWORD: ${BASICAUTH_PASSWORD}
+    networks:
+      - api-network
+
+  uvicorn:
+    image: uvicorn:pedro
+    container_name: uvicorn_server
+    ports:
+      - '8080:8080'
+    environment:
+      MONGO_URL: mongodb://${MONGODB_ADMIN_USERNAME}:${MONGODB_ADMIN_PASSWORD}@mongo:27017/
+      DB_NAME: ${MONGO_DATABASE}
     networks:
       - api-network
 

@@ -1,10 +1,6 @@
 from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional, List
 from bson import ObjectId
-from pydantic.functional_validators import BeforeValidator
-from typing_extensions import Annotated
-
-PyObjectId = Annotated[str, BeforeValidator(str)]
 
 
 class MoviesModel(BaseModel):
@@ -27,9 +23,9 @@ class MoviesModel(BaseModel):
 
 class UpdateMovieModel(BaseModel):
     id: Optional[int] = Field(alias="_id", default=None)
-    autor: Optional[str] = Field(...)
-    descripcion: Optional[str]
-    fecha_estreno: Optional[str]
+    autor: Optional[str] = None
+    descripcion: Optional[str] = None
+    fecha_estreno: Optional[str] = None
     model_config = ConfigDict(
         arbitrary_types_allowed=True,
         json_encoders={ObjectId: str},
@@ -45,8 +41,3 @@ class UpdateMovieModel(BaseModel):
 
 class MoviesCollection(BaseModel):
     movies: List[MoviesModel]
-
-
-class CounterModel(BaseModel):
-    id: Optional[str] = Field(alias="_id")
-    seq: int

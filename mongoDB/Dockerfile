@@ -1,5 +1,4 @@
 FROM mongo
-
 LABEL authors="Pedro Turriago Sanchez"
 
 # Define mountable directories.
