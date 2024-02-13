@@ -17,7 +17,7 @@ Se selecciona como base de datos `Mongo DB` y como framework para el api `FastAP
 
 ---
 ##### Arquitectura de la solución
-![DiseñoArquitectura_DatapathAPI.png](Dise%C3%B1oArquitectura_DatapathAPI.png)
+![arquitectura.png](arquitectura.png)
 
 ---
 #### Estructura del proyecto:
