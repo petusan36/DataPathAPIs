@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException, status, Body
 from models import MoviesCollection, MoviesModel, CounterModel, UpdateMovieModel
 from MongoDB.mongo_connect import movies_collection, counters_collection
+from fastapi.responses import Response
 # from bson import ObjectId
 from pymongo import ReturnDocument
 
@@ -116,5 +117,18 @@ async def update_movie(id: int, movie: UpdateMovieModel = Body(...)):
     # The update is empty, but we should still return the matching document:
     if (existing_movie := await movies_collection.find_one({"_id": id})) is not None:
         return existing_movie
+
+    raise HTTPException(status_code=404, detail=f"Pelicula {id} no encontrada")
+
+
+@router.delete("/movies/{id}", response_description="Eliminar pelicula")
+async def delete_movie(id: int):
+    """
+    Elimina un registro de una pelicula de la base de datos
+    """
+    delete_result = await movies_collection.delete_one({"_id": id})
+
+    if delete_result.deleted_count == 1:
+        return Response(status_code=status.HTTP_204_NO_CONTENT)
 
     raise HTTPException(status_code=404, detail=f"Pelicula {id} no encontrada")
