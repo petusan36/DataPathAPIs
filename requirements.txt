@@ -1,7 +1,6 @@
 fastapi[all]
 routes[all]
 motor[all]
-bson[all]
 pydantic[all]
 uvicorn[all]
 pymongo[all]
