@@ -86,7 +86,7 @@ build.sh
 > 
 > docker build -f uvicorn/Dockerfile -t uvicorn:`<tag>` .
 
-Donde `<tag>` por defecto viene con `pedro` pero puede ser cambiada a gusto de la persona por otro valor, si esta se cambia, también se debe ajsutar en el archivo `docker-compose.yml` y cambiar por el tag asignado en cada uno de los servicios en la propiedad `image
+Donde `<tag>` por defecto viene con `pedro` pero puede ser cambiada a gusto de la persona por otro valor, si esta se cambia, también se debe ajsutar en el archivo `docker-compose.yml` y cambiar por el tag asignado en cada uno de los servicios en la propiedad `image`
 
 ```commandline
 . build.sh
@@ -98,7 +98,7 @@ Con esto se crearan las imagenes que se usaran en los servicios del `docker-comp
 **uvicorn:pedro:** Imagen del servidor `uvicorn`
 
 **Nota:**
-*La imagen **mongo-express** es creada a partir de la imagen standar desde el `docker-compose.yml`* 
+*La imagen **mongo-express** es creada a partir de la imagen estándar desde el `docker-compose.yml`* 
 
 ---
 ##### Ejecución de las contenedores
@@ -124,7 +124,7 @@ Las urls generadas de los servicios, por los contenedores son las siguientes:
 > 
 > /movies/{id}  métodos: GET / PUT / DELETE
 >```
-**mongo_frontend** http://localhost:8081 : para ingresar se deben digitar los valores que se dejaron en la variables de ambiente `BASICAUTH_USERNAME BASICAUTH_PASSWORD` en el archivo `.env`
+**mongo_frontend** http://localhost:8081 : para ingresar se deben digitar los valores que se dejaron en la variables de ambiente `BASICAUTH_USERNAME`, `BASICAUTH_PASSWORD` en el archivo `.env`
 
 ---
 #### Ejemplo estructura para consultar
