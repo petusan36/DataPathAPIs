@@ -17,31 +17,37 @@ Se selecciona como base de datos `Mongo DB` y como framework para el api `FastAP
 
 ---
 ##### Arquitectura de la solución
-![arquitectura.png](arquitectura.png)
+![arquitectura.png](Aarquitectura.png)
 
 ---
 #### Estructura del proyecto:
 ```nginx
 |- controllers
-	| - movies_controllers.py
+	| - moviesController.py
 | - models
-	| - modelsMovies.py
+	| - moviesModel.py
 | - mongoDB
 	| - mongo-init
 		| - mongo-init.js	
 	| - Dockerfile
-	| - mongo_connect.py
-| - routers
-	| - routerMovies.py
+	| - mongoConnect.py
+| - routes
+	| - moviesRoute.py
 | - uvicorn
 	| - Dockerfile
 | - .dockerignore
 | - .env
+| - .gitignore
+| - Arquitectura.png
+| - build.sh
 | - docker-compose.yml
+| - down.sh
 | - LICENSE
 | - main.py
 | - README.md
 | - requirements.txt
+| - stop.sh
+| - up.sh
 ```
 
 ---

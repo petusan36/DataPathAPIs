@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, status, Body
-from models.modelsMovies import MoviesCollection, MoviesModel, UpdateMovieModel
-from mongoDB.mongo_connect import movies_collection, counters_collection
+from models.moviesModel import MoviesCollection, MoviesModel, UpdateMovieModel
+from mongoDB.mongoConnect import movies_collection, counters_collection
 from fastapi.responses import Response
 from pymongo import ReturnDocument
 
