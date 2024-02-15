@@ -163,13 +163,15 @@ Usando herramientas como swagger o postman se pueden enviar a los distintos meto
 ***/movies/ GET*** No requiere parámetros, al consultar retornara una lista de los registros en la base de datos hasta un tope de 1000
 
 ***/movies/ POST*** *(body)* se envia usando el cuerpo con la estructura como se ve a continuación *recibe solamente un registro por vez.*
-```commandline
-{
-  "autor": "Jane Doe",
-  "descripcion": "the revenge of 5 against 1",
-  "fecha_estreno": "01-12-1900"
-}
-``` 
+
+>*Ejemplo de la estructura body para el envío:*
+>```commandline
+>{
+>  "autor": "Jane Doe",
+>  "descripcion": "the revenge of 5 against 1",
+>  "fecha_estreno": "01-12-1900"
+>}
+>``` 
 
 ***/movies/{id} GET / PUT / DELETE*** Se reemplaza el campo `{id}` por el valor del id a consultar, modificar o eliminar.
 
