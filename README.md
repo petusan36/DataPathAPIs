@@ -17,32 +17,60 @@ Se selecciona como base de datos `Mongo DB` y como framework para el api `FastAP
 
 ---
 ##### Arquitectura de la solución
-![arquitectura.png](arquitectura.png)
+![arquitectura.png](Aarquitectura.png)
 
 ---
 #### Estructura del proyecto:
 ```nginx
-|- controllers
-	| - movies_controllers.py
-| - models
-	| - modelsMovies.py
+| - app
+    | - connectors
+        | - mongoConnect.py
+    |- controllers
+    	| - moviesController.py
+    | - models
+	    | - moviesModel.py
+    | - routers
+    	| - moviesRoute.py	    
+    | - main.py
 | - mongoDB
 	| - mongo-init
-		| - mongo-init.js	
+	    | - mongo-init.js
 	| - Dockerfile
-	| - mongo_connect.py
-| - routers
-	| - routerMovies.py
 | - uvicorn
 	| - Dockerfile
 | - .dockerignore
 | - .env
+| - .gitignore
+| - Arquitectura.png
+| - build.sh
 | - docker-compose.yml
+| - down.sh
 | - LICENSE
-| - main.py
 | - README.md
 | - requirements.txt
+| - stop.sh
+| - up.sh
 ```
+#### Contenidos de las carpetas
+`app` contiene todos los archivos necesarios de nuestra aplicación.
+
+`app.connectors` contiene las conexiones a bases de datos usadas por la aplicación.
+
+`app.controllers` contiene los controladores de la aplicación.
+
+`app.models` contiene los modelos usados por la aplicación.
+
+`app.routers` contiene los routes que conectan con cada request de nuestra aplicación.
+
+***Nota***: se usa el nombre `routers` ya que genera conflicto con un modulo de *FastAPI* si se usa `routes`.
+
+`mongoDB` contiene los archivos necesarios para la creación de la imagen y precarga de la bases de datos usada por la aplicación.
+
+`mongoDB.mongo-init` contiene el archivo con los registros de precarga javascript para la base de datos.
+
+`uvicorn` contiene el archivo para la creación de la imagen para el servidor en el que se despliega la aplicación. 
+
+Los demás archivos, algunos son estandares y los otros se irán explicando según su importancia de uso. 
 
 ---
 #### Estructura de la Base de datos
@@ -86,7 +114,7 @@ build.sh
 > 
 > docker build -f uvicorn/Dockerfile -t uvicorn:`<tag>` .
 
-Donde `<tag>` por defecto viene con `pedro` pero puede ser cambiada a gusto de la persona por otro valor, si esta se cambia, también se debe ajsutar en el archivo `docker-compose.yml` y cambiar por el tag asignado en cada uno de los servicios en la propiedad `image
+Donde `<tag>` por defecto viene con `pedro` pero puede ser cambiada a gusto de la persona por otro valor, si esta se cambia, también se debe ajsutar en el archivo `docker-compose.yml` y cambiar por el tag asignado en cada uno de los servicios en la propiedad `image`
 
 ```commandline
 . build.sh
@@ -98,7 +126,7 @@ Con esto se crearan las imagenes que se usaran en los servicios del `docker-comp
 **uvicorn:pedro:** Imagen del servidor `uvicorn`
 
 **Nota:**
-*La imagen **mongo-express** es creada a partir de la imagen standar desde el `docker-compose.yml`* 
+*La imagen **mongo-express** es creada a partir de la imagen estándar desde el `docker-compose.yml`* 
 
 ---
 ##### Ejecución de las contenedores
@@ -124,7 +152,7 @@ Las urls generadas de los servicios, por los contenedores son las siguientes:
 > 
 > /movies/{id}  métodos: GET / PUT / DELETE
 >```
-**mongo_frontend** http://localhost:8081 : para ingresar se deben digitar los valores que se dejaron en la variables de ambiente `BASICAUTH_USERNAME BASICAUTH_PASSWORD` en el archivo `.env`
+**mongo_frontend** http://localhost:8081 : para ingresar se deben digitar los valores que se dejaron en la variables de ambiente `BASICAUTH_USERNAME`, `BASICAUTH_PASSWORD` en el archivo `.env`
 
 ---
 #### Ejemplo estructura para consultar
@@ -135,13 +163,15 @@ Usando herramientas como swagger o postman se pueden enviar a los distintos meto
 ***/movies/ GET*** No requiere parámetros, al consultar retornara una lista de los registros en la base de datos hasta un tope de 1000
 
 ***/movies/ POST*** *(body)* se envia usando el cuerpo con la estructura como se ve a continuación *recibe solamente un registro por vez.*
-```commandline
-{
-  "autor": "Jane Doe",
-  "descripcion": "the revenge of 5 against 1",
-  "fecha_estreno": "01-12-1900"
-}
-``` 
+
+>*Ejemplo de la estructura body para el envío:*
+>```commandline
+>{
+>  "autor": "Jane Doe",
+>  "descripcion": "the revenge of 5 against 1",
+>  "fecha_estreno": "01-12-1900"
+>}
+>``` 
 
 ***/movies/{id} GET / PUT / DELETE*** Se reemplaza el campo `{id}` por el valor del id a consultar, modificar o eliminar.
 
@@ -150,9 +180,9 @@ Usando herramientas como swagger o postman se pueden enviar a los distintos meto
 Para la detención de la ejecución de los contenedores se debe estár ubicado en la ruta del archivo `docker-compose.yml` y ejecutar el comando docker `docker compose down` o estando en la ruta del archivo `down.sh`, se puede ejecutar ya que cumple la misma función.
 
 down.sh
-> docker compose down
+> docker compose down -v
 
-Esto eliminará los contenedores usados por los servicios 
+Esto eliminará los contenedores usados por los servicios y los volumenes asociados.
 ```commandline
 . down.sh
 ```
