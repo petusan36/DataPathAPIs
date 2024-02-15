@@ -22,17 +22,20 @@ Se selecciona como base de datos `Mongo DB` y como framework para el api `FastAP
 ---
 #### Estructura del proyecto:
 ```nginx
-|- controllers
-	| - moviesController.py
-| - models
-	| - moviesModel.py
+| - app
+    | - connectors
+        | - mongoConnect.py
+    |- controllers
+    	| - moviesController.py
+    | - models
+	    | - moviesModel.py
+    | - routers
+    	| - moviesRoute.py	    
+    | - main.py
 | - mongoDB
 	| - mongo-init
-		| - mongo-init.js	
+	    | - mongo-init.js
 	| - Dockerfile
-	| - mongoConnect.py
-| - routes
-	| - moviesRoute.py
 | - uvicorn
 	| - Dockerfile
 | - .dockerignore
@@ -43,12 +46,31 @@ Se selecciona como base de datos `Mongo DB` y como framework para el api `FastAP
 | - docker-compose.yml
 | - down.sh
 | - LICENSE
-| - main.py
 | - README.md
 | - requirements.txt
 | - stop.sh
 | - up.sh
 ```
+#### Contenidos de las carpetas
+`app` contiene todos los archivos necesarios de nuestra aplicación.
+
+`app.connectors` contiene las conexiones a bases de datos usadas por la aplicación.
+
+`app.controllers` contiene los controladores de la aplicación.
+
+`app.models` contiene los modelos usados por la aplicación.
+
+`app.routers` contiene los routes que conectan con cada request de nuestra aplicación.
+
+***Nota***: se usa el nombre `routers` ya que genera conflicto con un modulo de *FastAPI* si se usa `routes`.
+
+`mongoDB` contiene los archivos necesarios para la creación de la imagen y precarga de la bases de datos usada por la aplicación.
+
+`mongoDB.mongo-init` contiene el archivo con los registros de precarga javascript para la base de datos.
+
+`uvicorn` contiene el archivo para la creación de la imagen para el servidor en el que se despliega la aplicación. 
+
+Los demás archivos, algunos son estandares y los otros se irán explicando según su importancia de uso. 
 
 ---
 #### Estructura de la Base de datos

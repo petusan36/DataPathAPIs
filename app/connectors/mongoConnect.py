@@ -7,9 +7,8 @@ import motor.motor_asyncio
 # db = client.get_database(DB_NAME)
 # client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URL)
 
-# on uvicorn
+# on uvicorn docker-compose.yml
 client = motor.motor_asyncio.AsyncIOMotorClient(os.environ["MONGO_URL"])
 db = client.get_database(os.environ["DB_NAME"])
-
 movies_collection = db.get_collection("my_movies")
 counters_collection = db.get_collection("counters")

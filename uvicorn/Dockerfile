@@ -10,5 +10,7 @@ COPY . .
 # Step 3. Install production dependencies.
 RUN pip install --no-cache-dir -r requirements.txt
 
-# ENTRYPOINT ["top", "-b"]
-CMD ["uvicorn", "main:appCollections", "--host", "0.0.0.0", "--port", "8080"]
+RUN rm requirements.txt
+
+#ENTRYPOINT ["top", "-b"]
+CMD ["uvicorn", "app.main:appCollections", "--host", "0.0.0.0", "--port", "8080"]

@@ -51,9 +51,13 @@ services:
       DB_NAME: ${MONGO_DATABASE}
     networks:
       - api-network
+    volumes:
+      - data_uvicorn:/app
 
 volumes:
   data_mongo:
+    driver: local
+  data_uvicorn:
     driver: local
 
 networks:
