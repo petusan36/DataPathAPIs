@@ -178,9 +178,9 @@ Usando herramientas como swagger o postman se pueden enviar a los distintos meto
 Para la detención de la ejecución de los contenedores se debe estár ubicado en la ruta del archivo `docker-compose.yml` y ejecutar el comando docker `docker compose down` o estando en la ruta del archivo `down.sh`, se puede ejecutar ya que cumple la misma función.
 
 down.sh
-> docker compose down
+> docker compose down -v
 
-Esto eliminará los contenedores usados por los servicios 
+Esto eliminará los contenedores usados por los servicios y los volumenes asociados.
 ```commandline
 . down.sh
 ```
